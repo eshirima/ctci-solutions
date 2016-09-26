@@ -1,5 +1,13 @@
-//: Playground - noun: a place where people can play
+// Question: Given two strings,write a method to decide if one is a permutation of the other.
 
 import UIKit
 
-var str = "Hello, playground"
+extension String
+{
+    func getAllPermutations()-> (permutations: [String], numberOfPermutions: Int)
+    {
+        for
+        
+        return ([String](), 5)
+    }
+}
