@@ -229,38 +229,3 @@ class LinkedList<T: Comparable>
         return head == nil ? true : false
     }
 }
-
-let sample: LinkedList<Int> = LinkedList()
-sample.insert(back: 3)
-sample.insert(back: 5)
-sample.insert(back: 10)
-sample.insert(back: 78)
-sample.printContents()
-
-sample.deleteBack()
-sample.printContents()
-
-//sample.deleteBack()
-//sample.printContents()
-
-//let temp: LinkedList = LinkedList(linkedList: sample)
-
-//sample.insertFront(data: 11)
-//sample.insertFront(data: 45)
-//sample.insertFront(data: 21)
-//sample.printContents()
-//print("Sample Head: \(sample.getHead())")
-//print("Sample Tail: \(sample.getTail())")
-//print("Temp Head: \(temp.getHead())")
-//print("Temp Tail: \(temp.getTail())")
-
-//sample.printContents()
-//temp.printContents()
-
-//let test: LinkedList<String> = LinkedList()
-//test.insert(back: "awesome")
-
-//temp.printContents()
-
-//sample.find(element: 45)
-//sample.find(element: 100)
