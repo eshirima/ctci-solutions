@@ -123,8 +123,8 @@ class LinkedList<T: Comparable & Hashable>
         }
     }
     
-    // This uses the array method
-    func isPalindromeWithArray()-> Bool
+    // Copies contents over to an array then compares
+    func isPalindromeWithArray()-> Bool // O(N)
     {
         var tempIterator: Node? = head
         var arrayOfElements: [T] = []
@@ -150,7 +150,8 @@ class LinkedList<T: Comparable & Hashable>
         return true
     }
     
-    func isPalindrome()-> Bool
+    // Reverses the list then performs the comparison
+    func isPalindrome()-> Bool // O(N)
     {
         var tempIterator: Node? = head
         let reversedList: LinkedList = LinkedList()
