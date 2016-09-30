@@ -113,7 +113,7 @@ class LinkedList<T: Equatable & Hashable>
         }
     }
     
-    func removeDuplicates()
+    func removeDuplicatesWithBuffer()
     {
         if isEmpty()
         {
@@ -125,6 +125,8 @@ class LinkedList<T: Equatable & Hashable>
         
         var previousIterator: Node? = head
         var currentIterator: Node? = head?.next
+        
+        elementSet.insert((head?.data)!)
         
         while currentIterator != nil
         {
@@ -176,7 +178,7 @@ temp.insert(back: 2,4,56,7,4,3,2,2,98,43,7,56)
 print("Before")
 temp.printContents()
 
-temp.removeDuplicates()
+temp.removeDuplicatesWithBuffer()
 print("After")
 temp.printContents()
 
