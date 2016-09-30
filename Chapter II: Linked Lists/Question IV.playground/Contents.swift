@@ -148,6 +148,8 @@ class LinkedList<T: Comparable & Hashable>
         return finalList
     }
     
+    // Keeps two lists. One with values less than element and vice versa for the other.
+    // Then sums up these two lists
     func partition(around element: T)-> LinkedList // Best: O(1) Worst: O(N)
     {
         if isEmpty()
