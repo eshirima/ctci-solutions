@@ -1,6 +1,4 @@
-/* Question: You have two numbers represented by a linked list, where each node contains a single digit.The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a function that adds the two numbers and returns the sum as a linked list.
-EXAMPLE
-Input:(7-> 1 -> 6) + (5 -> 9 -> 2).Thatis,617 + 295. Output:2 -> 1 -> 9.Thatis,912. */
+// Question: Implement a function to check if a linked list is a palindrome.
 
 import UIKit
 
@@ -125,25 +123,60 @@ class LinkedList<T: Comparable & Hashable>
         }
     }
     
-    static func +(lhs: inout LinkedList, rhs: inout LinkedList)-> LinkedList // O(N)
+    // This uses the array method
+    func isPalindromeWithArray()-> Bool
     {
-        let finalList: LinkedList = LinkedList()
-        var lhsIterator: Node? = lhs.head
-        var rhsIterator: Node? = rhs.head
+        var tempIterator: Node? = head
+        var arrayOfElements: [T] = []
         
-        while lhsIterator != nil
+        while tempIterator != nil
         {
-            finalList.insert(back: (lhsIterator?.data)!)
-            lhsIterator = lhsIterator?.next
+            arrayOfElements.append((tempIterator?.data)!)
+            tempIterator = tempIterator?.next
         }
         
-        while rhsIterator != nil
+        var front: Int = 0, back: Int = arrayOfElements.count - 1
+        
+        while front <= back
         {
-            finalList.insert(back: (rhsIterator?.data)!)
-            rhsIterator = rhsIterator?.next
+            if arrayOfElements[front] != arrayOfElements[back]
+            {
+                return false
+            }
+            
+            front += 1; back -= 1
         }
         
-        return finalList
+        return true
+    }
+    
+    func isPalindrome()-> Bool
+    {
+        var tempIterator: Node? = head
+        let reversedList: LinkedList = LinkedList()
+        
+        while tempIterator != nil
+        {
+            reversedList.insert(front: (tempIterator?.data)!)
+            
+            tempIterator = tempIterator?.next
+        }
+        
+        tempIterator = head
+        
+        var reverseTemp: Node? = reversedList.head
+        
+        while reverseTemp != nil
+        {
+            if !(reverseTemp?.data == tempIterator?.data)
+            {
+                return false
+            }
+            reverseTemp = reverseTemp?.next
+            tempIterator = tempIterator?.next
+        }
+        
+        return true
     }
     
     func printContents() // Worst: O(N) Best: O(1)
@@ -171,3 +204,31 @@ class LinkedList<T: Comparable & Hashable>
         return head == nil ? true : false
     }
 }
+
+let test0: LinkedList<String> = LinkedList()
+let test1: LinkedList<String> = LinkedList()
+let test2: LinkedList<String> = LinkedList()
+let test3: LinkedList<Int> = LinkedList()
+let test4: LinkedList<Int> = LinkedList()
+let test5: LinkedList<Int> = LinkedList()
+
+test0.insert(front: "p","u","t","i","t","u","p")
+test1.insert(front: "a","g","a","r","r","e","g","a","l","l","a","g","e","r")
+test2.insert(back: "s","u","r","e","t","u","s","k","c","o","c","k","s","u","t","e","r","u","s")
+test3.insert(back: 9,8,6,8,9)
+test4.insert(back: 3,7,4,9,4,7,3)
+test5.insert(front: 3,6,2,8,4,6,3)
+
+print(test0.isPalindrome()) // True
+print(test1.isPalindrome()) // False
+print(test2.isPalindrome()) // True
+print(test3.isPalindrome()) // True
+print(test4.isPalindrome()) // True
+print(test5.isPalindrome()) // False
+
+print(test0.isPalindromeWithArray()) // True
+print(test1.isPalindromeWithArray()) // False
+print(test2.isPalindromeWithArray()) // True
+print(test3.isPalindromeWithArray()) // True
+print(test4.isPalindromeWithArray()) // True
+print(test5.isPalindromeWithArray()) // False
