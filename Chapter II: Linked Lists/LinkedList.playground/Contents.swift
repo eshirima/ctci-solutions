@@ -1,6 +1,6 @@
 import UIKit
 
-class ListNode<T: Comparable>
+class ListNode<T: Equatable>
 {
     var data: T?
     var next: ListNode?
@@ -23,7 +23,7 @@ class ListNode<T: Comparable>
     }
 }
 
-class LinkedList<T: Comparable>
+class LinkedList<T: Equatable>
 {
     public typealias Node = ListNode<T>
     private var head: Node?, tail: Node?
@@ -85,7 +85,7 @@ class LinkedList<T: Comparable>
         }
     }
     
-    func insert(front data: T) // O(1)
+    private func insertFront(data: T) // O(1)
     {
         if isEmpty()
         {
@@ -102,7 +102,7 @@ class LinkedList<T: Comparable>
         }
     }
     
-    func insert(back data: T) // O(1)
+    private func insertBack(data: T) // O(1)
     {
         if isEmpty()
         {
@@ -113,6 +113,22 @@ class LinkedList<T: Comparable>
         {
             tail?.next = Node(data: data)
             tail = tail?.next
+        }
+    }
+    
+    func insert(back elements: T ...) // Worst: O(N) Best: O(1)
+    {
+        for element in elements
+        {
+            insertBack(data: element)
+        }
+    }
+    
+    func insert(front elements: T...) // Worst: O(N) Best: O(1)
+    {
+        for element in elements
+        {
+            insertFront(data: element)
         }
     }
     
