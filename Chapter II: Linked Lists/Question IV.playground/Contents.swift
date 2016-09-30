@@ -127,7 +127,7 @@ class LinkedList<T: Comparable & Hashable>
         }
     }
     
-    static func +(lhs: LinkedList, rhs: LinkedList)-> LinkedList
+    static func +(lhs: LinkedList, rhs: LinkedList)-> LinkedList // O(N)
     {
         let finalList: LinkedList = LinkedList()
         var lhsIterator: Node? = lhs.head
