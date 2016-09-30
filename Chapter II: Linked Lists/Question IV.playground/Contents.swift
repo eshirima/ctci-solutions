@@ -148,7 +148,7 @@ class LinkedList<T: Comparable & Hashable>
         return finalList
     }
     
-    func partition(around element: T)-> LinkedList
+    func partition(around element: T)-> LinkedList // Best: O(1) Worst: O(N)
     {
         if isEmpty()
         {
