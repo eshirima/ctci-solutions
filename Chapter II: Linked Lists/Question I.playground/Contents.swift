@@ -115,7 +115,7 @@ class LinkedList<T: Equatable & Hashable>
         }
     }
     
-    func removeDuplicatesWithBuffer()
+    func removeDuplicates()
     {
         if isEmpty()
         {
@@ -174,14 +174,55 @@ class LinkedList<T: Equatable & Hashable>
     }
 }
 
-let temp: LinkedList<Int> = LinkedList()
-temp.insert(back: 2,4,56,7,4,3,2,2,98,43,7,56)
+let integerList: LinkedList<Int> = LinkedList()
+let stringList: LinkedList<String> = LinkedList()
+stringList.insert(back: "TQPyH0vcI3", "BpxYoazqSE", "1oG0bPUlli", "x8bm9tAmyD", "u8DDZBYIgi")
+stringList.insert(front: "mpO4l9vSYV", "dPCVrYzxMb", "1oG0bPUlli", "BpxYoazqSE", "1re4RKjgwA")
+integerList.insert(front: 503, 108, 34, 666, 228)
+integerList.insert(back: 228, 316, 108, 228, 933)
 
-print("Before")
-temp.printContents()
+stringList.removeDuplicates()
+integerList.removeDuplicates()
 
-temp.removeDuplicatesWithBuffer()
-print("After")
-temp.printContents()
+/* Before String Removal */
+//1re4RKjgwA
+//BpxYoazqSE
+//1oG0bPUlli
+//dPCVrYzxMb
+//mpO4l9vSYV
+//TQPyH0vcI3
+//BpxYoazqSE
+//1oG0bPUlli
+//x8bm9tAmyD
+//u8DDZBYIgi
 
+/* After String Removal */
+//1re4RKjgwA
+//BpxYoazqSE
+//1oG0bPUlli
+//dPCVrYzxMb
+//mpO4l9vSYV
+//TQPyH0vcI3
+//x8bm9tAmyD
+//u8DDZBYIgi
 
+/* Before Integer Removal */
+//228
+//666
+//34
+//108
+//503
+//228
+//316
+//108
+//228
+//933
+
+/* After Integer Removal */
+//228
+//666
+//34
+//108
+//503
+//316
+//933
