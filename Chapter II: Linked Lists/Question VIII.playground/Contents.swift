@@ -1,6 +1,12 @@
-/* Question: You have two numbers represented by a linked list, where each node contains a single digit.The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a function that adds the two numbers and returns the sum as a linked list.
-EXAMPLE
-Input:(7-> 1 -> 6) + (5 -> 9 -> 2).Thatis,617 + 295. Output:2 -> 1 -> 9.Thatis,912. */
+/* Question: 
+ Given a circular linked list, implement an algorithm that returns the node at the
+ beginning of the loop.
+ DEFINITION
+ Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so as to make a loop in the linked list.
+ EXAMPLE
+ Input: A -> B -> C -> D -> E -> C[thesameCasearlier]
+ Output: C
+ */
 
 // NOT FINISHED
 
@@ -90,9 +96,7 @@ class LinkedList<T: Comparable & Hashable>
         else
         {
             let tempNode: Node? = Node(data: data)
-            
             tempNode?.next = head
-            
             head = tempNode
         }
     }
@@ -173,3 +177,9 @@ class LinkedList<T: Comparable & Hashable>
         return head == nil ? true : false
     }
 }
+
+
+let test: LinkedList<String> = LinkedList()
+
+
+test.insert(back: "A","B","C","D","E","C")
