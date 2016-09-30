@@ -127,7 +127,7 @@ class LinkedList<T: Comparable & Hashable>
         }
     }
     
-    static func +(lhs: LinkedList, rhs: LinkedList)-> LinkedList // O(N)
+    static func +(lhs: inout LinkedList, rhs: inout LinkedList)-> LinkedList // O(N)
     {
         let finalList: LinkedList = LinkedList()
         var lhsIterator: Node? = lhs.head
@@ -157,8 +157,8 @@ class LinkedList<T: Comparable & Hashable>
         }
         var tempIterator: Node? = head
         
-        let lessThanList: LinkedList = LinkedList()
-        let largerThanList: LinkedList = LinkedList()
+        var lessThanList: LinkedList = LinkedList()
+        var largerThanList: LinkedList = LinkedList()
         
         while tempIterator != nil
         {
