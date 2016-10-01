@@ -86,70 +86,69 @@ class LinkedList<T: Comparable & Hashable>
         self.tail = otherIterator
     }
     
-    private func insertFront(data: T) // O(1)
+    private func insertFront(node: ListNode<T>) // O(1)
     {
         if isEmpty()
         {
-            head = Node(data: data)
+            head = node
             tail = head
         }
         else
         {
-            let tempNode: Node? = Node(data: data)
+            let tempNode: Node? = node
             tempNode?.next = head
             head = tempNode
         }
     }
     
-    private func insertBack(data: T) // O(1)
+    private func insertBack(node: ListNode<T>) // O(1)
     {
         if isEmpty()
         {
-            head = Node(data: data)
+            head = node
             tail = head
         }
         else
         {
-            tail?.next = Node(data: data)
+            tail?.next = node
             tail = tail?.next
         }
     }
     
-    func insert(back elements: T ...) // Best: O(1) Worst: O(N)
+    func insert(back elements: ListNode<T> ...) // Best: O(1) Worst: O(N)
     {
         for element in elements
         {
-            insertBack(data: element)
+            insertBack(node: element)
         }
     }
     
-    func insert(front elements: T ...) // Best: O(1) Worst: O(N)
+    func insert(front elements: ListNode<T> ...) // Best: O(1) Worst: O(N)
     {
         for element in elements
         {
-            insertFront(data: element)
+            insertFront(node: element)
         }
     }
     
-    static func +(lhs: inout LinkedList, rhs: inout LinkedList)-> LinkedList // O(N)
+    func findLoop()->(isFound:Bool, location:Node?)
     {
-        let finalList: LinkedList = LinkedList()
-        var lhsIterator: Node? = lhs.head
-        var rhsIterator: Node? = rhs.head
+        var tempIterator: Node? = head
+        var nodeSet: Set<Int> = Set<Int>()
         
-        while lhsIterator != nil
+        while tempIterator != nil
         {
-            finalList.insert(back: (lhsIterator?.data)!)
-            lhsIterator = lhsIterator?.next
+            let nodeMemoryLocation = unsafeBitCast(tempIterator, to: Int.self)
+            
+            if nodeSet.contains(nodeMemoryLocation)
+            {
+                return (true, tempIterator)
+            }
+            nodeSet.insert(nodeMemoryLocation)
+            tempIterator = tempIterator?.next
         }
         
-        while rhsIterator != nil
-        {
-            finalList.insert(back: (rhsIterator?.data)!)
-            rhsIterator = rhsIterator?.next
-        }
-        
-        return finalList
+        return (false, nil)
     }
     
     func printContents() // Worst: O(N) Best: O(1)
@@ -178,8 +177,49 @@ class LinkedList<T: Comparable & Hashable>
     }
 }
 
+let temp0: LinkedList<Int> = LinkedList()
+let temp1: LinkedList<Int> = LinkedList()
 
-let test: LinkedList<String> = LinkedList()
+let node0: ListNode<Int> = ListNode(data: 5)
+let node1: ListNode<Int> = ListNode(data: 13)
+let node2: ListNode<Int> = ListNode(data: 78)
+let node3: ListNode<Int> = ListNode(data: 50)
+let node4: ListNode<Int> = ListNode(data: 12)
+let node5: ListNode<Int> = ListNode(data: 5)
+let node6: ListNode<Int> = ListNode(data: 344)
+let node7: ListNode<Int> = ListNode(data: 59)
+let node8: ListNode<Int> = ListNode(data: 0)
+
+temp0.insert(back: node0,node1,node3,node4,node5,node6,node4)
+temp1.insert(back: node0,node6,node2,node5,node7,node6)
+
+let response0 = temp0.findLoop()
+
+if response0.isFound
+{
+    if let location = response0.location
+    {
+        print("Loop starts at node with value: \(location.data!)")
+    }
+}
+else
+{
+    print(response0)
+}
+
+let response1 = temp1.findLoop()
+
+if response1.isFound
+{
+    if let location = response1.location
+    {
+        print("Loop starts at node with value: \(location.data!)")
+    }
+}
+else
+{
+    print(response1)
+}
 
 
-test.insert(back: "A","B","C","D","E","C")
+
