@@ -133,8 +133,10 @@ class LinkedList<T: Comparable & Hashable>
     
     func findLoop()->(isFound:Bool, location:Node?)
     {
-        var tempIterator: Node? = head
         var nodeSet: Set<Int> = Set<Int>()
+        nodeSet.insert(unsafeBitCast(head, to: Int.self))
+        
+        var tempIterator: Node? = head?.next
         
         while tempIterator != nil
         {
@@ -147,7 +149,6 @@ class LinkedList<T: Comparable & Hashable>
             nodeSet.insert(nodeMemoryLocation)
             tempIterator = tempIterator?.next
         }
-        
         return (false, nil)
     }
     
@@ -191,7 +192,6 @@ let node7: ListNode<Int> = ListNode(data: 59)
 let node8: ListNode<Int> = ListNode(data: 0)
 
 temp0.insert(back: node0,node1,node3,node4,node5,node6,node4)
-temp1.insert(back: node0,node6,node2,node5,node7,node6)
 
 let response0 = temp0.findLoop()
 
@@ -206,20 +206,3 @@ else
 {
     print(response0)
 }
-
-let response1 = temp1.findLoop()
-
-if response1.isFound
-{
-    if let location = response1.location
-    {
-        print("Loop starts at node with value: \(location.data!)")
-    }
-}
-else
-{
-    print(response1)
-}
-
-
-
