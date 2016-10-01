@@ -36,11 +36,13 @@ class LinkedList<T: Equatable & Hashable>
 {
     public typealias Node = ListNode<T>
     private var head: Node?, tail: Node?
+    private var length: Int = 0
     
     init()
     {
         head = nil
         tail = nil
+        length = 0
     }
     
     init(linkedList: LinkedList)
@@ -49,10 +51,12 @@ class LinkedList<T: Equatable & Hashable>
         {
             head = nil
             tail = nil
+            length = 0
             return
         }
         
         self.head = linkedList.head
+        length += 1
         
         var headIterator: Node? = head, otherIterator: Node? = linkedList.head?.next
         
@@ -61,9 +65,13 @@ class LinkedList<T: Equatable & Hashable>
             headIterator?.next = otherIterator
             
             otherIterator = otherIterator?.next
+            
+            length += 1
         }
         
         self.tail = otherIterator
+        
+        length += 1
     }
     
     private func insertFront(data: T) // O(1)
@@ -72,6 +80,8 @@ class LinkedList<T: Equatable & Hashable>
         {
             head = Node(data: data)
             tail = head
+            
+            length += 1
         }
         else
         {
@@ -80,6 +90,8 @@ class LinkedList<T: Equatable & Hashable>
             tempNode?.next = head
             
             head = tempNode
+            
+            length += 1
         }
     }
     
@@ -89,11 +101,15 @@ class LinkedList<T: Equatable & Hashable>
         {
             head = Node(data: data)
             tail = head
+            
+            length += 1
         }
         else
         {
             tail?.next = Node(data: data)
             tail = tail?.next
+            
+            length += 1
         }
     }
     
@@ -113,11 +129,28 @@ class LinkedList<T: Equatable & Hashable>
         }
     }
     
-    func findElement(fromLastTo position: Int)-> Bool
+    func findElement(fromLastToPosition position: Int)-> (isFound:Bool, value:T?) // Best: O(1) Worst: O(N)
     {
-        let
+        if position > length
+        {
+            print("List too short")
+            return (false, nil)
+        }
+        else if position <= 0
+        {
+            return (false, nil)
+        }
         
-        return true
+        var tempIterator: Node? = head
+        var elementLocation: Int = length - position
+        
+        while elementLocation > 0
+        {
+            tempIterator = tempIterator?.next
+            elementLocation -= 1
+        }
+        
+        return (true, tempIterator?.data)
     }
     
     func printContents() // Worst: O(N) Best: O(1)
@@ -145,3 +178,9 @@ class LinkedList<T: Equatable & Hashable>
         return head == nil ? true : false
     }
 }
+
+let temp: LinkedList<Int> = LinkedList()
+
+temp.insert(back: 1,2,3,4,5,6,7)
+
+print(temp.findElement(fromLastToPosition: 2)) // 6
