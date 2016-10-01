@@ -126,6 +126,7 @@ class LinkedList<T: Equatable & Hashable>
         }
     }
     
+    // finds difference between lengths and iterates checking for equality from there one
     func findIntersection(linkedList: LinkedList)->(isFound:Bool, location:Node?) // O(N+M)
     {
         if self.isEmpty() || linkedList.isEmpty()
