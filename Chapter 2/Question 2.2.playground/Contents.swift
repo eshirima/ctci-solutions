@@ -77,7 +77,7 @@ func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
         return final // return nil
     }
 
-    for _ in 1..<(listLen - k) {
+    for _ in 1...(listLen - k) {
         // Loop through until reaching the k - 1 element
         if (current != nil) {
             current = current?.next
