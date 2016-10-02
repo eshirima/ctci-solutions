@@ -37,14 +37,7 @@ extension String
         compressedString.append(String(currentCharacter) + String(occurence))
         compressedLength += 2
         
-        if compressedLength > originalLength
-        {
-            return self
-        }
-        else
-        {
-            return compressedString
-        }
+        return compressedLength > originalLength ? self : compressedString
     }
 }
 
