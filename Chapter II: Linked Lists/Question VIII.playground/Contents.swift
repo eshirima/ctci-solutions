@@ -206,3 +206,8 @@ else
 {
     print(response0)
 }
+
+
+let temp: String = "dsafsf"
+
+temp.range(of: temp)
