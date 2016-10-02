@@ -39,4 +39,5 @@ func oneAway( s1: String, s2: String ) -> Bool {
     }
 }
 
+// Test Case
 oneAway(s1: "pale", s2: "pale")
