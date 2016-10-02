@@ -16,23 +16,22 @@ func stringCompression( s: String ) -> String {
                 s[s.index(s.startIndex, offsetBy: index)]) ) { // Chars are the same
                 count += 1
                 nBuilder.append(s[s.index(s.startIndex, offsetBy: index)])
-                nBuilder.append(String(count));
-                break;
+                nBuilder.append(String(count))
             }
         }
         if ( (count > 0) &&
             (s[s.index(s.startIndex, offsetBy: (index - 1))] !=
                 s[s.index(s.startIndex, offsetBy: index )])) {
             nBuilder.append(s[s.index(s.startIndex, offsetBy: (index - 1))])
-            if ( count > 0 ) {
-                nBuilder.append(String(count))
-                count = 0
-            }
+            // Append char count
+            nBuilder.append(String(count))
+            count = 0
         }
         count += 1
     }
-    return nBuilder
+    return nBuilder.characters.count > s.characters.count ? s : nBuilder
 }
 
 // Test Case:
 stringCompression(s: "aabcccccaaa")
+stringCompression(s: "zzdNJsWzyQ")
