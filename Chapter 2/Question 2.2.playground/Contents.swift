@@ -77,7 +77,7 @@ func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
         return final // return nil
     }
 
-    for _ in 1...(listLen - k) {
+    for _ in 0..<(listLen - k) {
         // Loop through until reaching the k - 1 element
         if (current != nil) {
             current = current?.next
@@ -86,9 +86,8 @@ func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
             return final
         }
     }
-
     // Return the kth element
-    return (current?.next != nil) ? current! : final
+    return (current != nil) ? current! : final
 }
 
 // Test Case:
@@ -101,4 +100,4 @@ list.append(value: "Test")
 list.append(value: "List")
 
 
-print(kThElement(list: list, k: 5).value)
+print(kThElement(list: list, k: 2).value)
