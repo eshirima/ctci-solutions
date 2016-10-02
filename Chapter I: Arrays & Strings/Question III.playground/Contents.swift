@@ -4,33 +4,43 @@ import UIKit
 
 extension String
 {
-    // Change to array of strings
-    // Remove whitespaces
-    // Join the array by adding %20
+    // Change to array of characters
+    // Keep two counters, namely front and back
+    // Front adds %20 to whitespaces as it loops
+    // Back loops towards the front escaping spaces until encounters a character
     mutating func URLify()
     {
         if self.isEmpty
         {
-            print("Cannot URLify an empty String")
+            print("Cannot URLify an empty string")
             return
         }
         
-        var stringArray = self.components(separatedBy: " ")
-        var numberOfElements = stringArray.count - 1
+        var stringURL: String = ""
+        var elements = Array(self.characters)
+        var back: Int = elements.count - 1, front: Int = 0
         
-        for index in (0...numberOfElements).reversed()
+        while front <= back
         {
-            if stringArray[index] == ""
+            if elements[back] == " "
             {
-                stringArray.remove(at: index)
-                numberOfElements -= 1
+                back -= 1
+                continue
+            }
+            
+            if elements[front] == " "
+            {
+                stringURL.append("%20")
+                front += 1
             }
             else
             {
-                break
+                stringURL.append(elements[front])
+                front += 1
             }
         }
-        self = stringArray.joined(separator: "%20")
+        
+        self = stringURL
     }
 }
 
