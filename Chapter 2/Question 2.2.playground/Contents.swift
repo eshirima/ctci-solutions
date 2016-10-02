@@ -72,12 +72,12 @@ public class LinkedList<T> {
 
 func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
     var current = list.head, final: LinkedListNode<String> = LinkedListNode(value: "nil") // LinkedListNode<String>
+    let listLen = list.count
     if ( (list.head == nil) || (k < 1) ) {
         return final // return nil
     }
 
-
-    for _ in 1..<(list.count - k) {
+    for _ in 1..<(listLen - k) {
         // Loop through until reaching the k - 1 element
         if (current != nil) {
             current = current?.next
@@ -87,13 +87,8 @@ func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
         }
     }
 
-    // Return and assign the next element (kth element)
-    if current?.next != nil {
-        final = current!
-        return final
-    } else {
-        return final // Should be un-reachable
-    }
+    // Return the kth element
+    return (current?.next != nil) ? current! : final
 }
 
 // Test Case:
