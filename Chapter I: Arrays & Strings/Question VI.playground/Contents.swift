@@ -45,6 +45,3 @@ print("aabcccccaaa".compress())
 print("XbWZiGbirS".compress())
 print("zzdNJsWzyQ".compress())
 print("jjkHHHHXe".compress())
-
-//temp.compress()
-//temp1.compress()
