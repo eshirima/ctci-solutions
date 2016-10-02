@@ -67,26 +67,32 @@ public class LinkedList<T> {
 ///////////////////////// End LinkedList Implementation ////////////////////////////////////
 /******************************************************************************************/
 
+//Return Kth to Last: Implement an algorithm to  nd the kth to last element of a singly linked list.
+//Hints:#8, #25, #41, #67, #126
+
 func kThElement( list: LinkedList<String>, k: Int ) -> LinkedListNode<String> {
     var current = list.head, final: LinkedListNode<String> = LinkedListNode(value: "nil") // LinkedListNode<String>
     if ( (list.head == nil) || (k < 1) ) {
         return final // return nil
-    } else {
-        for _ in 0..<k { // Loop through until reaching the k - 1 element
-            if (current != nil) {
-                current = current?.next
-            } else {
-                return final
-                // return nil -- unable to reach element at k - 1
-            }
-        }
-        // Return and assign the next element (kth element)
-        if current?.next != nil {
-            final = (current?.next)!
+    }
+
+    for _ in 0..<k {
+        // Loop through until reaching the k - 1 element
+        if (current != nil) {
+            current = current?.next
+        } else {
+            // return nil -- unable to reach element at k - 1
             return final
         }
     }
-    return final // Should be un-reachable
+
+    // Return and assign the next element (kth element)
+    if current?.next != nil {
+        final = (current?.next)!
+        return final
+    } else {
+        return final // Should be un-reachable
+    }
 }
 
 // Test Case:
