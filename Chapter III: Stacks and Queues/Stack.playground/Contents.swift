@@ -30,12 +30,12 @@ class Stack<T: Equatable>
     public typealias Node = ListNode<T>
     private var top: Node?
     
-    init()
+    init() // O(1)
     {
         top = nil
     }
     
-    init(stack: Stack)
+    init(stack: Stack) // O(N)
     {
         if stack.isEmpty()
         {
@@ -55,7 +55,7 @@ class Stack<T: Equatable>
         }
     }
     
-    func peek()->T?
+    func peek()->T? // O(1)
     {
         if isEmpty()
         {
@@ -92,7 +92,7 @@ class Stack<T: Equatable>
         }
     }
     
-    func pop() -> T?
+    func pop() -> T? // O(1)
     {
         if isEmpty()
         {

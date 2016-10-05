@@ -30,13 +30,13 @@ class Queue<T: Equatable>
     public typealias Node = ListNode<T>
     private var front: Node?, back: Node?
     
-    init()
+    init() // O(1)
     {
         front = nil
         back = nil
     }
     
-    init(queue: Queue)
+    init(queue: Queue) // O(N)
     {
         if queue.isEmpty()
         {
@@ -59,7 +59,7 @@ class Queue<T: Equatable>
         back = otherIterator
     }
     
-    func peek()->T?
+    func peek()->T? // O(1)
     {
         if isEmpty()
         {
@@ -94,7 +94,7 @@ class Queue<T: Equatable>
         }
     }
     
-    func dequeue()
+    func dequeue() // O(1)
     {
         if isEmpty()
         {
@@ -134,22 +134,3 @@ class Queue<T: Equatable>
         }
     }
 }
-
-
-let temp: Queue<Int> = Queue()
-
-temp.enqueue(elements: 3,4,5,6,7,8,9,0,2,1,4,6,7)
-
-temp.printContents()
-print("*********************")
-
-temp.dequeue()
-temp.dequeue()
-temp.dequeue()
-temp.dequeue()
-temp.dequeue()
-temp.dequeue()
-temp.dequeue()
-
-temp.printContents()
-
