@@ -55,6 +55,8 @@ class Queue<T: Equatable>
             
             otherIterator = otherIterator?.next
         }
+        
+        back = otherIterator
     }
     
     func peek()->T?
@@ -70,43 +72,41 @@ class Queue<T: Equatable>
         return topData
     }
     
-    private func push(data: T) // O(1)
+    private func enqueue(data: T) // O(1)
     {
         if isEmpty()
         {
             front = Node(data: data)
+            back = front
         }
         else
         {
-            let tempNode: Node? = Node(data: data)
-            
-            tempNode?.next = front
-            
-            front = tempNode
+            back?.next = Node(data: data)
+            back = back?.next
         }
     }
     
-    func push(elements: T...) // Worst: O(N) Best: O(1)
+    func enqueue(elements: T...) // Worst: O(N) Best: O(1)
     {
         for element in elements
         {
-            push(data: element)
+            enqueue(data: element)
         }
     }
     
-    func pop() -> T?
+    func dequeue()
     {
         if isEmpty()
         {
-            print("Can't delete from an empty stack")
-            return nil
+            print("Can't remove from an empty queue")
+            return
         }
-        
-        let tempHolder: Node? = front
-        
-        front = front?.next
-        
-        return tempHolder?.data
+        else
+        {
+            var tempHolder: Node? = front
+            front = front?.next
+            tempHolder = nil
+        }
     }
     
     private func isEmpty()-> Bool // O(1)
@@ -134,3 +134,22 @@ class Queue<T: Equatable>
         }
     }
 }
+
+
+let temp: Queue<Int> = Queue()
+
+temp.enqueue(elements: 3,4,5,6,7,8,9,0,2,1,4,6,7)
+
+temp.printContents()
+print("*********************")
+
+temp.dequeue()
+temp.dequeue()
+temp.dequeue()
+temp.dequeue()
+temp.dequeue()
+temp.dequeue()
+temp.dequeue()
+
+temp.printContents()
+
