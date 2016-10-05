@@ -47,7 +47,7 @@ class Stack<T: Equatable>
         
         var topIterator: Node? = top, otherIterator: Node? = stack.top?.next
         
-        while otherIterator?.next != nil
+        while otherIterator != nil
         {
             topIterator?.next = otherIterator
             
